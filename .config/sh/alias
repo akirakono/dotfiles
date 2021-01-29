@@ -1,0 +1,23 @@
+alias ls='ls --color=auto -Fh'
+alias l='ls'
+alias ll='ls -l --group-directories-first'
+alias la="ls -A"
+alias lla="ll -A"
+alias lr="ls -lR"
+
+alias ..='cd ..'
+
+alias cp='cp -i'
+alias rm='rm -i'
+alias mv='mv -i'
+
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+alias du='du -h'
+
+alias ga='git add'
+alias gs='git status'
+alias gd='git diff'
+alias gco='git checkout'

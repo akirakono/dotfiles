@@ -1,0 +1,25 @@
+[user]
+	email = a.dilla.kono@gmail.com
+	name = Akira Kono
+
+[core]
+	autocrlf = input
+	fscache = true
+
+[push]
+	default = simple
+
+[pull]
+	ff = only
+
+[color]
+	ui = auto
+
+[diff]
+	tool = vimdiff
+
+[alias]
+  a = add
+	s = status
+	d = diff
+	co = checkout

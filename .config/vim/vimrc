@@ -1,0 +1,77 @@
+filetype plugin indent on
+
+"" Basic
+set encoding=utf-8
+set fileencoding=utf-8
+set termencoding=utf-8
+set title
+
+
+set directory=$XDG_CACHE_HOME/vim,~,/tmp
+set backupdir=$XDG_CACHE_HOME/vim,~,/tmp
+set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+set undodir=$XDG_CACHE_HOME/vim,~,/tmp
+set viewdir=$XDG_DATA_HOME/vim/view
+
+set nobackup
+set noswapfile
+set noundofile
+set hidden
+set autoread
+set mouse=a
+
+
+"" Appearance
+set t_Co=256
+set number
+set ruler
+set cursorline
+set laststatus=2
+set statusline=%F%m%r%h%w%=\ %Y\ [%{&fileencoding},%{&ff}]\ (%l,%v)\ %l/%L\ %p%%]
+set showcmd
+
+set showmatch
+set matchpairs& matchpairs+=<:>
+set belloff=all
+set list
+set listchars=tab:»-,trail:~,eol:↲,extends:»,precedes:«,nbsp:%
+set ambiwidth=double
+set wrap
+set display=lastline
+set scrolloff=3
+
+"" Colorscheme
+syntax on
+set background=dark
+colorscheme desert
+
+"" Edit
+set autoindent
+set cindent                       "smart auto indent
+set textwidth=0
+set backspace=indent,eol,start    " backspace key works intuitively
+set wildmode=list:full            " mode on completion that starts with 'wildchar' (Tab)
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o "disable automatic comment insertion
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0
+set shiftround
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+set wrapscan
+
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap gj j
+nnoremap gk k
+
+inoremap jj <Esc>
+
+nnoremap <Esc><Esc> :nohlsearch<CR>

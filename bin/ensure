@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+DIR=$(dirname "$1")
+
+[ -d "$DIR" ] || mkdir -p  "$DIR"
+
+echo -n "$DIR"

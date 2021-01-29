@@ -1,0 +1,1 @@
+export GIBO_BOILERPLATES="${XDG_DATA_HOME}/"
