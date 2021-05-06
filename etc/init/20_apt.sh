@@ -2,6 +2,8 @@
 
 set -eux
 
+source $(dirname $(readlink -f "$0"))/../../.env
+
 PACKAGES="build-essential vim tmux fzf zsh tree"
 
 if ! type apt > /dev/null 2>&1; then

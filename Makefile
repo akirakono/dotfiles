@@ -2,10 +2,9 @@ DOTFILES_EXCLUDES := .git
 DOTFILES_TARGET   := $(wildcard .??*) $(wildcard bin/*)
 DOTFILES_FILES    := $(filter-out $(DOTFILES_EXCLUDES), $(DOTFILES_TARGET))
 
-# XDG_CONFIG_DIRS := $(wildcard config/*)
-# 
-# XDG_CONFIG_HOME ?= ${HOME}/.config
-# 
+XDG_CONFIG_HOME ?= ${HOME}/.config
+XDG_CONFIG_DIRS := $(wildcard xdg_config/*)
+
 info:
 	@echo ${DOTFILE_FILES}
 
@@ -15,6 +14,7 @@ info:
 
 deploy:
 	@$(foreach val, $(DOTFILES_FILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
+	@$(foreach val, $(XDG_CONFIG_DIRS), ln -sfnv $(abspath $(val)) $(XDG_CONFIG_HOME)/$(subst xdg_config/,,$(val));)
 
 init:
 	@$(foreach val, $(wildcard ./etc/init/*.sh), bash $(val);)
