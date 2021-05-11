@@ -1,3 +1,4 @@
+source "${HOME}/.env"
 export HISTFILE=${XDG_DATA_HOME}/bash/history
 export HISTSIZE=1000
 export HISTFILESIZE=100000
