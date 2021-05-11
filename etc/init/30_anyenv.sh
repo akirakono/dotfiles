@@ -4,7 +4,8 @@ set -eux
 
 git clone https://github.com/anyenv/anyenv ${XDG_DATA_HOME}/anyenv
 
-${XDG_DATA_HOME}/anyenv/bin/anyenv install --init
+# We don't need this since we have a manifest file under $XDG_CONFIG_HOME/anyenv
+#${XDG_DATA_HOME}/anyenv/bin/anyenv install --init
 
 anyenv install goenv
 anyenv install nodenv
