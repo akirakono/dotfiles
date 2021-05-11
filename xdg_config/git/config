@@ -19,7 +19,14 @@
 	tool = vimdiff
 
 [alias]
-  a = add
+	a = add
 	s = status
 	d = diff
 	co = checkout
+
+[ghq]
+	root = ~/src
+
+[include]
+	path = ~/.gitconfig.local
+
