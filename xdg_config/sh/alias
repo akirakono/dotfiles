@@ -21,3 +21,11 @@ alias ga='git add'
 alias gs='git status'
 alias gd='git diff'
 alias gco='git checkout'
+alias gb='git switch $(git branch | fzf)'
+alias gp='print -z git push -u --force-with-lease origin $(git branch --show-current)' 
+
+
+alias zprofile="vim ${XDG_CONFIG_HOME}/zsh/.zprofile"
+alias zshrc="vim ${XDG_CONFIG_HOME}/zsh/.zshrc"
+alias vimrc="vim ${XDG_CONFIG_HOME}/vimr/vimrc"
+

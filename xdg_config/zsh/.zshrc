@@ -10,7 +10,6 @@ export HISTFILE=${XDG_DATA_HOME}/zsh/history
 export HISTSIZE=1000
 export SAVEHIST=100000
 
-
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt hist_no_store        # no 'history' command itslef
@@ -28,18 +27,12 @@ else
 %f%F{magenta}%#%f "
 fi
 
+autoload -Uz vcs_info
+setopt prompt_subst
 
-## show git branch name at $RPROMPT
-function git_branch_name {
-    if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
-        echo "[git:$(git rev-parse --abrev-ref HEAD 2> /dev/null)]"
-    fi
-}
-function set_rprompt {
-    export RPROMPT="%F{green}`git_branch_name`%f"
-}
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd set_rprompt
+zstyle ':vcs_info:*' formats "%F{green}[%b]"
+precmd () { vcs_info }
+RPROMPT='${vcs_info_msg_0_}'
 
 # Completions
 autoload -Uz compinit
@@ -64,10 +57,10 @@ if [ -x "`which fzf 2>/dev/null`" ]; then
 
     function fzf-cdr() {
         local selected_dir="$(cdr -l | sed 's/^[0-9]\+ \+//' | fzf --no-sort --prompt="cdr >" --query "$LBUFFER")"
-	if [ -n "$selected_dir" ]; then
-	    BUFFER="cd $selected_dir"
-	    zle accept-line
-	fi
+    if [ -n "$selected_dir" ]; then
+    BUFFER="cd $selected_dir"
+        zle accept-line
+    fi
     }
     zle -N fzf-cdr
     bindkey '^x' fzf-cdr
@@ -75,17 +68,17 @@ if [ -x "`which fzf 2>/dev/null`" ]; then
 
     function fzf-select-history() {
         BUFFER="$(history -nr 1 | awk '!a[$0]++' | fzf --no-sort --query "$LBUFFER" | sed 's/\\n/\n/')"
-	CURSOR=$#Buffer            # move the cursort to the end of line
-	zle -R -c                  # refresh
+        CURSOR=$#Buffer            # move the cursort to the end of line
+        zle -R -c                  # refresh
     }
     zle -N fzf-select-history
     bindkey '^R' fzf-select-history
 
     function cdg() {
         local selected_dir=$(ghq list -p | fzf --query "$*")
-	if [ -d "$selected_dir" ]; then
-	    print -z cd "$selected_dir"
-	fi
+        if [ -d "$selected_dir" ]; then
+        print -z cd "$selected_dir"
+        fi
     }
 fi
 
@@ -100,4 +93,5 @@ zle -N execute_immediate
 bindkey '^j' execute_immediate
 
 source "${XDG_CONFIG_HOME}/sh/alias"
+
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
