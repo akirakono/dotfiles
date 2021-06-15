@@ -4,7 +4,7 @@ set -eux
 
 source $(dirname $(readlink -f "$0"))/../../.env
 
-PACKAGES="build-essential zsh vim git curl tmux fzf tree"
+PACKAGES="build-essential zsh vim git curl tmux fzf tree jq"
 
 if ! type apt > /dev/null 2>&1; then
     exit 0
